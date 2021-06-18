@@ -5,9 +5,18 @@ export default class BookStatus extends Component {
     this.props.changeBookStatus(this.props.book, event.target.value);
 
     render() {
+        let current = 'none'
+
+        for (let item of this.props.books) {
+            if (item.id === this.props.book.id) {
+              current = item.shelf;
+              break;
+            }
+          }
+
         return (
             <div className="book-shelf-changer">
-                <select onChange={this.updateStatus} defaultValue='none'>
+                <select onChange={this.updateStatus} defaultValue={current}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
